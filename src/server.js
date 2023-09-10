@@ -3,6 +3,7 @@ require("express-async-errors")
 const migrationsRun = require("./database/sqlite/migrations")
 
 const AppError = require("./utils/AppError")
+const uploadConfig = require("./configs/upload")
 
 const express = require('express');
 
@@ -16,6 +17,9 @@ const app = express();
 //defining what type of file whe are working(in this case json)
 //now the api knows what type of information we are working with
 app.use(express.json())
+
+//show avatar image inside uploads folder
+app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER))
 
 //defining that these are the routes of my application
 app.use(routes)
