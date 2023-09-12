@@ -5,6 +5,7 @@ const migrationsRun = require("./database/sqlite/migrations")
 const AppError = require("./utils/AppError")
 const uploadConfig = require("./configs/upload")
 
+const cors = require("cors")
 const express = require('express');
 
 const routes = require("./routes")
@@ -13,6 +14,7 @@ const routes = require("./routes")
 migrationsRun();
 
 const app = express();
+app.use(cors())
 
 //defining what type of file whe are working(in this case json)
 //now the api knows what type of information we are working with
